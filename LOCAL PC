@@ -1,0 +1,30 @@
+# --- CLEAN OLD KEYS ---
+$ssh = Join-Path $env:USERPROFILE ".ssh"
+New-Item -ItemType Directory -Force -Path $ssh | Out-Null
+Remove-Item "$ssh\id_*" -Force -ErrorAction SilentlyContinue
+Remove-Item "$ssh\remote_backup*" -Force -ErrorAction SilentlyContinue
+Remove-Item "$ssh\known_hosts" -Force -ErrorAction SilentlyContinue
+
+# --- GENERATE NEW KEY (no passphrase) ---
+ssh-keygen -t ed25519 -f "$ssh\remote_backup" -C "backup@124.123.30.198" -N ""
+
+# --- LOCK PRIVATE KEY ACLS ---
+icacls "$ssh\remote_backup" /inheritance:r | Out-Null
+icacls "$ssh\remote_backup" /grant:r "$env:USERNAME:(R)" | Out-Null
+
+# --- SHOW YOUR PUBLIC KEY (COPY THIS SINGLE LINE) ---
+Write-Host "`n===== COPY THIS PUBLIC KEY =====" -ForegroundColor Cyan
+Get-Content "$ssh\remote_backup.pub"
+Write-Host "=================================`n" -ForegroundColor Cyan
+
+--------------------------------------------------------------------------------------------NEXT STEP
+
+ssh-keygen -t ed25519 -f "$env:USERPROFILE\.ssh\remote_backup" -C "backup@124.123.30.198" -N '""'
+
+----------------------------
+
+dir $env:USERPROFILE\.ssh\remote_backup*
+
+---------------------------------
+
+Get-Content "$env:USERPROFILE\.ssh\remote_backup.pub"
