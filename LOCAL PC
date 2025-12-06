@@ -1,3 +1,8 @@
+LOCAL PC-
+ FOLLOW THE STEPS TO GENERATE A KEY
+
+RUN ALL THESE STEPS IN POWERSHELL(NOT CMD):
+
 # --- CLEAN OLD KEYS ---
 $ssh = Join-Path $env:USERPROFILE ".ssh"
 New-Item -ItemType Directory -Force -Path $ssh | Out-Null
@@ -21,10 +26,15 @@ Write-Host "=================================`n" -ForegroundColor Cyan
 
 ssh-keygen -t ed25519 -f "$env:USERPROFILE\.ssh\remote_backup" -C "backup@124.123.30.198" -N '""'
 
-----------------------------
+---------------------------------------------------------------------------------------------NEXT STEP
 
 dir $env:USERPROFILE\.ssh\remote_backup*
 
----------------------------------
+--------------------------------------------------------------------------------------------NEXT STEP
 
 Get-Content "$env:USERPROFILE\.ssh\remote_backup.pub"
+
+--------------------------------------------------------------------------------------------NEXT STEP
+
+                       Then copy the single line content(starts with ssh-ed25519)
+------------------------------------------------END-------------------------------------------------
