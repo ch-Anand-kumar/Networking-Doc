@@ -1,0 +1,48 @@
+Create a Task That Runs Every 15 Minutes (24/7):
+
+	Step 1: Open Task Scheduler
+          Press Win + R
+          Type: taskschd.msc
+          Press Enter
+Step 2: Create a New Task
+          On the right side → Click Create Task…
+          	General Tab
+                Name: EX: (Program Every 15 Minutes)
+                
+                Choose the options:
+      
+                Run whether user is logged on or not
+                Run with highest privileges
+
+Step 3: Triggers Tab
+        Click New…
+        Under Begin the task: On a schedule
+        
+        
+        Set:
+           Start: (any time)
+  
+          Settings: Daily
+          
+          
+          Repeat task every:
+           👉 Select 15 minutes
+          
+          
+          For a duration of:
+           👉 Select Indefinitely
+
+        Click OK
+
+Step 4: Actions
+          Add your program/script the same way:
+
+          Start a program
+          Select .bat file
+
+Step 5: Save
+        Click OK
+
+        Enter  password
+
+📌 Your program will now run every 15 minutes continuously.
