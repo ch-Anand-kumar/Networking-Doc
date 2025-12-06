@@ -1,0 +1,30 @@
+Remote Server
+
+Purpose:  create authorized_keys, set ACLs, and (optionally) restart SSH service.
+ALL COMMNANDS RUN ON POWERSHELL
+
+# create ~/.ssh
+$ssh = "$env:USERPROFILE\.ssh"
+$auth = Join-Path $ssh 'authorized_keys'
+New-Item -ItemType Directory -Force -Path $ssh | Out-Null
+
+# paste your PUBLIC key (single line from remote_backup.pub on your PC)
+Write-Host "Paste your PUBLIC KEY (single line) and press Enter:"
+$pub = Read-Host
+Set-Content -Path $auth -Value $pub -NoNewline -Encoding ascii
+
+# secure ACLs so OpenSSH accepts them
+icacls $ssh /inheritance:d | Out-Null
+icacls $ssh /grant "$env:USERNAME:(F)" /t | Out-Null
+icacls $ssh /remove "Authenticated Users" "BUILTIN\Users" "Everyone" /t | Out-Null
+icacls $auth /inheritance:d | Out-Null
+icacls $auth /grant "$env:USERNAME:(R)" | Out-Null
+
+----------------------------------------------------------------------------------------------NEXT STEP
+
+Restart the SSH service (Admin PowerShell on TALLYSERVER):
+
+net stop sshd
+net start sshd
+
+-------------------------------------------------------------------------
