@@ -1,7 +1,9 @@
-Remote Server
+REMOTE SERVER
 
 Purpose:  create authorized_keys, set ACLs, and (optionally) restart SSH service.
 ALL COMMNANDS RUN ON POWERSHELL
+
+START--------------------------------------------------------------------------------------------------------------
 
 # create ~/.ssh
 $ssh = "$env:USERPROFILE\.ssh"
@@ -27,4 +29,4 @@ Restart the SSH service (Admin PowerShell on TALLYSERVER):
 net stop sshd
 net start sshd
 
--------------------------------------------------------------------------
+-------------------------------------------------------------------------END
