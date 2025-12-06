@@ -9,7 +9,7 @@ START--------------------------------------
 REMOTE SERVER
 
 Purpose:  create authorized_keys, set ACLs, and (optionally) restart SSH service.
-ALL COMMNANDS RUN ON POWERSHELL
+ALL COMMANDS RUN ON POWERSHELL
 
 START--------------------------------------------------------------------------------------------------------------
 
